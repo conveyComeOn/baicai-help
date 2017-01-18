@@ -1,0 +1,69 @@
+<!--mail.wxml-->
+<!--mall-menu start-->
+<block wx:if="{{glo_is_load}}">
+    <view class="glo_load_view">
+        <text class="iconfont icon-loading animated infinite rotate mr5"></text><text>正在努力加载</text>
+    </view>
+</block>
+<block wx:else>
+    <!--<scroll-view style="height:800px;" bindscrolltolower="indexscrolltolower" lower-threshold="50" scroll-y="true">-->
+<view class="mall-menu f16">
+    <scroll-view scroll-x="true">
+        <view class="content">
+            <block wx:if="{{this_item == 0}}">
+                <view class="active" bindtap="index_item_bind" id="0">全部</view>
+            </block>
+            <block wx:else>
+                <view bindtap="index_item_bind" id="0">全部</view>
+            </block>
+            <block wx:for="{{cate_list}}">
+                <block wx:if="{{this_item == item.id}}">
+                    <view class="active" bindtap="index_item_bind" id="{{item.id}}">{{item.name}}</view>
+                </block>
+                <block wx:else>
+                    <view bindtap="index_item_bind" id="{{item.id}}">{{item.name}}</view>
+                </block>
+            </block>
+        </view>
+    </scroll-view>
+</view>
+<!--mall-menu end-->
+<!--mall-list start-->
+<block wx:if="{{goods_list == null}}">
+<!--暂无内容提示 start-->
+<view class="no-content tc">
+    <text class="no-content-icon iconfont icon-yemianwuneirong"></text>
+    <view class="no-content-font">暂无商品信息</view>
+</view>
+<!--暂无内容提示 end-->
+</block>
+<block wx:else>
+<view class="mall-list">
+    <view class="content clearfix">
+    <block wx:for="{{goods_list}}">
+        <view class="item" bindtap="detail" id="{{item.id}}">
+            <view class="pic">
+                <image src="{{item.g_img}}" mode="aspectFill"></image>
+                <text class="price"> ￥ {{item.shop_price}}</text>
+            </view>           
+            <text class="title lineText2">{{item.g_name}}</text>
+        </view>
+    </block>
+    </view>
+</view>
+<!--mall-list end-->
+
+<!--loading start-->
+<view class="m20 tc grey loading" wx:if="{{showLoading}}">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text><text>正在加载...</text>
+</view>
+<!--loading end-->
+</block>
+<!--</scroll-view>-->
+<!--浮动购物车按钮 start-->
+<view class="cart-float-btn notempty" bindtap="mallcart">
+    <text class="iconfont icon-shop"></text>
+</view>
+<!--浮动购物车按钮 end-->
+</block>
+

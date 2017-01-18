@@ -1,0 +1,51 @@
+{
+  "pages":[
+    "pages/bbs/index/index","pages/user/user_index/index",
+    "pages/news/news_view/index",
+    "pages/user/user_edit/index",
+    "pages/user/user_account/index",
+    "pages/user/user_pay/index",
+    "pages/user/shop/address_list/index",
+    "pages/user/shop/address_add/index",
+    "pages/user/bbs/list/index",
+    "pages/user/order/list/index",
+    "pages/user/order/info/index",
+    "pages/user/order/comment/index",
+    "pages/bbs/detail/detail",
+    "pages/bbs/forum/forum",
+    "pages/bbs/forumlist/forumlist",
+    "pages/bbs/post/post",
+    "pages/shop/malldetail/malldetail",
+    "pages/shop/mallcart/mallcart",
+    "pages/shop/mallsure/mallsure",
+    "pages/shop/orderpay/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#09BB07",
+    "navigationBarTitleText": "宿联订房",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color":"#292929",
+    "selectedColor":"#09BB07",
+    "backgroundColor":"#fff",
+    "borderStyle":"black",
+    "list": [{
+			  "pagePath": "pages/bbs/index/index",
+			  "text": "社区论坛",
+			  "iconPath":"images/tabbar/bbs.png",
+			  "selectedIconPath":"images/tabbar/bbs_in.png"
+			},{
+			"pagePath": "pages/bbs/bforum/index",
+			  "text": "版块",
+			  "iconPath":"images/tabbar/bbs_cate.png",
+			  "selectedIconPath":"images/tabbar/bbs_cate_in.png"
+			},{
+        "pagePath": "pages/user/user_index/index",
+			  "text": "个人中心",
+			  "iconPath":"images/tabbar/user.png",
+			  "selectedIconPath":"images/tabbar/user_in.png"
+      }]
+  }
+}

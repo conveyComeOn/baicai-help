@@ -1,0 +1,46 @@
+<view class="user_content">
+    <view class="profit_add">
+        <view class="profit_up">
+            <text>累计总收益</text>
+            <text class="profit_up_right">2.58<text>元</text></text>
+        </view>
+        <view class="profit_un">
+            <ul class="clearfix">
+                <li>2.06<i>元</i><span>回答收益</span></li>
+                <li>0.64<i>元</i><span>旁听分成收益</span></li>
+            </ul>
+        </view>
+    </view>
+    <view class="profit_add p_bottom">
+        <view class="profit_up gridXb">
+            <text>可提现金额</text>
+            <span>0.00<i>元</i></span>
+        </view>
+        <view class="profit_un">
+            <text class="profit_un_text">满1.00元方可提现，微信官方会扣除2%手续费，旁听收益回答者和提问者分成比例为50%</text>
+        </view>
+    </view>
+    <view class="profitSq p_bottom">
+        <view class="profitSq_min">					
+            <a href="#">申请提现</a>
+        </view>
+    </view>
+    <view class="profit_add p_bottom">
+        <view class="profit_up gridXb">
+            <text>已提现金额</text>
+            <span>2.85<i>元</i></span>
+        </view>
+        <view class="profit_un">
+            <p>请到微信钱包查看具体收益</p>
+        </view>
+    </view>
+    <view class="profit_add">
+        <view class="profit_main">
+            <view class="profit_addr">
+                <p>2016/09/05</p>
+                <p>2.85</p>
+            </view>
+            <span>处理中</span>
+        </view>
+    </view>
+</view>

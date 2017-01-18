@@ -1,0 +1,68 @@
+<block wx:if="{{glo_is_load}}">
+    <view class="glo_load_view">
+        <text class="iconfont icon-loading animated infinite rotate mr5"></text><text>正在努力加载</text>
+    </view>
+</block>
+<block wx:else>
+<view class="user_content">
+    <view class="Member_head">
+        <view class="Member_img domain">
+            <image class="userinfo-avatar" src="{{userInfo.user_headimg}}" background-size="cover" ></image>
+            <view class="userinfo_name">{{userInfo.user_nickname}}</view>
+        </view>
+        <view class="bianji">
+            <view bindtap="bind_user_edit">
+                <view class="bianji_text"><text class="iconfont icon-write"></text> 编辑</view>
+            </view>
+        </view>
+        <block wx:if="{{userInfo.is_vip == 1}}">
+        <view class="vip">
+            <view class="vip_ico"><image src="../../../images/ico_vip.png" background-size="cover"></image></view>
+        </view>
+        </block>
+    </view>
+</view>
+
+<view class="my-menu mt10">
+<block wx:for="{{menu_list}}" wx:key="index">       
+        <view class="my-menu-box">
+            <view class="my-menu-item {{item.isshow == true ? 'arrowR arrowRv' :'arrowR'}}" bindtap="isShow_bind" id="{{item.name}}">
+                <text>{{item.text}}</text>
+            </view>
+            <view class="forum-box" wx:if="{{item.isshow}}">
+                <block wx:for="{{item.menus}}" wx:key="index">
+                    <view class="my-menu-sub" wx:if="{{bbs_show_status}}" bindtap="menu_link_bind" id="{{item.link}}">
+                        <view class="my-menu-subitem gridXt">
+                            <text class="arrowL">{{item.text}}</text>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+</block>
+</view>
+
+
+
+<view class="my-menu mt10"> 
+        <view class="my-menu-box">
+            <view class="my-menu-item {{item.isshow == true ? 'arrowR arrowRv' :'arrowR'}}" bindtap="choose_home" id="{{item.name}}">
+                <text>选择小区</text><text class="home">{{myhome}}</text>
+            </view>
+
+        </view>
+</view>
+
+<view class="my-menu mt10"> 
+        <view class="my-menu-box">
+            <view class="my-menu-item center" bindtap="isShow_bind" id="{{item.name}}">
+                <text>退出登录</text>
+            </view>
+
+        </view>
+</view>
+
+
+
+
+</block>

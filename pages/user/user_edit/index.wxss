@@ -1,0 +1,13 @@
+.Member_head{background:#09bb07;position:relative;height:150px;border-top:1px solid #079805;padding-top:20px;font-size:14px}
+.Member_img{width:5rem;margin:0 auto;text-align:center;color:#fff}
+.userinfo_name{clear:both;width:100%;padding-top:10px}
+.userinfo-avatar{border-radius:50%;width:80px;height:80px;border:5px solid #06CD05}
+.user_edit_con{background:#fff}
+.user_account_info{color:#333;font-size:14px;padding:20px 10px}
+.user_account_info text{background:rgba(9,187,9,.1);border:1px dashed #09a507;color:#09A507;font-size:16px;padding:8px 30px;margin:0 8px;-webkit-border-radius:5px;border-radius:5px}
+.user_edit_li_title{height:45px;line-height:45px;padding:0 15px;background:rgba(227,255,223,.5);font-size:14px;color:#09BB07}
+.user_edit_li_title text{float:right;color:#969696}
+.user_edit_li_input input{height:40px;line-height:40px;font-size:14px;padding:0 10px;color:#333}
+.btn button{width:90%;height:45px;background:#09A507;line-height:45px;text-align:center;margin:30px auto;-webkit-border-radius:5px;border-radius:5px;color:#fff;font-size:14px}
+.radio-group{padding-left:20rpx;}
+.radio-group radio{margin-right: 10rpx;}

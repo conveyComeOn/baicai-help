@@ -1,0 +1,98 @@
+
+<!--index.wxml-->
+<block wx:if="{{glo_is_load}}">
+  <view class="glo_load_view">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text>
+    <text>正在努力加载</text>
+  </view>
+</block>
+<block wx:else>
+  <view class="index_content">
+    <view class="swiper">
+      <swiper indicator-dots="{{DuoguanSwiperConfig.is_indicatorDots}}" autoplay="{{DuoguanSwiperConfig.is_autoPlay}}" interval="{{DuoguanSwiperConfig.interval}}" duration="{{DuoguanSwiperConfig.duration}}">
+        <block wx:for="{{DuoguanSwiperData}}">
+          <swiper-item>
+            <navigator url="../news/news_view/index?cms_id={{item.url}}">
+              <image src="{{item.img}}" class="slide-image" mode="aspectFill" />
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!--index search-->
+    <view class="search-bar">
+      <view class="search-bar-warper flex">
+        <icon type="search" size="20" class="mt10 mr10 ml10" />
+        <input class="sub" placeholder="请输入您要搜索的关键字" bindchange="search" />
+      </view>
+    </view>
+
+    <!--index items-->
+    <scroll-view class="index-items gridXt" scroll-x="true">
+
+      <!--
+  <block wx:if="{{this_items == 0}}">
+      <text class="index-items-li on" bindtap="index_item_bind" id="0">全部</text>
+  </block>
+  <block wx:else>
+      <text class="index-items-li" bindtap="index_item_bind" id="0">全部</text>
+  </block>-->
+      <block wx:for="{{DuoguanCmsCateItems}}">
+        <block wx:if="{{this_items === item.id}}">
+          <text class="index-items-li on" bindtap="index_item_bind" id="{{item.id}}">{{item.name}}</text>
+        </block>
+        <block wx:else>
+          <text class="index-items-li" bindtap="index_item_bind" id="{{item.id}}">{{item.name}}</text>
+        </block>
+      </block>
+      <block wx:if="{{showsidenav}}">
+
+        <!--<text class="index-items-li onnav" bindtap="index_item_more_bind">更多 <text class="iconfont icon-unfold"></text> </text>-->
+      </block>
+      <block wx:else>
+
+        <!--<text class="index-items-li" bindtap="index_item_more_bind">更多 <text class="iconfont icon-unfold"></text></text>-->
+      </block>
+      <view class="side_nav_main" wx:if="{{showsidenav}}">
+        <block wx:for="{{DuoguanCmsMoreCateItems}}">
+          <view class="gridFourCirle" bindtap="index_item_bind" id="{{item.id}}">{{item.name}}</view>
+        </block>
+      </view>
+    </scroll-view>
+
+    <!--index main-->
+    <view class="index_main">
+      <block wx:for="{{DuoguanCmsItems}}">
+        <view class="index_main_list gridXt">
+          <navigator url="../news/news_view/index?cms_id={{item.id}}" class="index_navigator_cms flex">
+            <view class="index_main_list_img mr10">
+              <image class="list_img" src="{{item.litpic}}" mode="aspectFill"></image>
+            </view>
+            <view class="sub">
+              <view class="index_main_list_txt">
+                <text class="index_list_title f16">{{item.title}}</text>
+              </view>
+              <view class="index_list_time linght">
+                <text class="iconfont icon-time"></text> {{item.addtime}}</view>
+              <view class="index_list_other grey">
+                <view class="list_other_price green fr">
+                <block wx:if="{{item.read_price > 0}}">
+                    <text class="iconfont icon-recharge"></text> {{item.read_price}}</block>
+                </view>
+                  
+                <view class="list_other_views fl mr10">
+                  <text class="iconfont icon-attention"></text> {{item.read_count}}</view>
+                <view class="list_other_good fl">
+                  <text class="iconfont icon-appreciate"></text> {{item.reply_count}}</view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="m20 tc grey loading" wx:if="{{showLoading}}">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text><text>正在加载...</text>
+</view>
+</block>

@@ -1,0 +1,34 @@
+<block wx:if="{{PaylogItems == null}}">
+<!--暂无内容提示 start-->
+<view class="no-content tc">
+    <text class="no-content-icon iconfont icon-yemianwuneirong"></text>
+    <view class="no-content-font">暂无内容</view>
+</view>
+<!--暂无内容提示 end-->
+</block>
+<block wx:else>
+<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower="indexscrolltolower" bindscrolltoupper="indexscrolltoupper"  lower-threshold="50">
+<view class="index_main">
+    <block wx:for="{{PaylogItems}}">
+      <view class="index_main_list">
+      <navigator url="../../news/news_view/index?cms_id={{item.cid}}" class="index_navigator_cms">
+          <view class="list_title">{{item.title}}</view>
+          <view class="list_info"><span>{{item.addtime}}</span>金额：{{item.order_money}}</view>
+      </navigator>
+      </view>
+    </block>
+    <view class="load-more-wrap">
+      <block wx:if="{{hasMore}}">
+        <view class="load-content">
+          <text class="weui-loading"/><text class="loading-text">玩命加载中</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="load-content">
+          <text>没有更多内容了</text>
+        </view>
+      </block>
+    </view>
+</view>
+</scroll-view>
+</block>

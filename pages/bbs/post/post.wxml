@@ -1,0 +1,91 @@
+<!--post.wxml-->
+<view class="new-post">
+<form bindsubmit="formSubmit">
+    <view class="mod-bar f16 gridXb flex">
+        <view class="btn cancel" bindtap="post_cancel_bind">取消</view>
+        <view class="title f20 sub tc">发表帖子</view>
+        <button type="primary" class="sumbit" formType="submit" loading="{{submitIsLoading}}" disabled="{{buttonIsDisabled}}">发表</button>
+    </view>
+<!--
+ <view class="middle" wx:if="{{first_index==0?true:false}}" name='typename'>
+
+    <block wx:if="{{this_nav_name == '0'}}">
+        <view class="subs active">二手</view>
+    </block>
+    <block wx:else>
+        <view class="subs" bindtap="index_nav_bind" id="二手">二手</view>
+    </block>
+    <block wx:if="{{this_nav_name == '1'}}">
+        <view class="subs active">求购</view>
+    </block>
+    <block wx:else>
+        <view class="subs" bindtap="index_nav_bind" id="求购">求购</view>
+    </block>
+    <block wx:if="{{this_nav_name == '2'}}">
+        <view class="subs active">出租</view>
+    </block>
+    <block wx:else>
+        <view class="subs" bindtap="index_nav_bind" id="出租">出租</view>
+    </block>
+   
+ </view>
+-->
+
+
+ <view class="middle clearfix" wx:if="{{first_index==0?true:false}}" name='typename'>
+ <block wx:for="{{typeArray}}" wx:key="index">
+   <block wx:if="{{this_nav_name == index}}">
+        <view class="subs active">{{item}}</view>
+    </block>
+    <block wx:else>
+        <view class="subs" bindtap="index_nav_bind" id="{{item}}">{{item}}</view>
+    </block>
+</block>
+ </view>
+
+
+
+ <view class="middle clearfix" wx:if="{{first_index==1?true:false}}" name='typename'>
+ <block wx:for="{{typearr}}" wx:key="index" >
+   <block wx:if="{{this_nav_name == index}}">
+        <view class="subs active">{{item}}</view>
+    </block>
+    <block wx:else>
+        <view class="subs" bindtap="index_na_bind" id="{{item}}">{{item}}</view>
+    </block>
+</block>
+ </view>
+
+
+    <view class="input-text-box">
+        <input type="text" class="new-post-tit gridXb" name="post_title" placeholder="请输入帖子标题" />
+         <picker bindchange="firstpickchange" value="{{first_index}}" range="{{array}}" style="padding:0;">
+            <view class="picker new-post-cap arrowR">
+             <text class="grey">请选择类型：</text>{{array[first_index]}}
+            </view>
+        </picker>
+        <picker bindchange="bindPickerChange" value="{{cate_index}}" range="{{cateList}}" style="padding:0;" wx:if="{{first_index==0?false:true}}">
+            <view class="picker new-post-cap arrowR">
+             <text class="grey">请选择小区：</text>{{cateList[cate_index]}}
+            </view>
+        </picker>
+        <view class="gridXt" style="padding-top:15px;">
+            <textarea class="textarea" name="post_content" placeholder="写点什么吧..." maxlength="-1" />
+            
+         <!--<input type="text" name="pid" value="{{forum_thisid}}" style="display:none;" />-->
+          
+           <input name="pid"  hidden value='{{this_index==0?typeArray[this_nav_name]:typearr[this_nav_name]}}'/>
+
+        </view>
+    </view>
+    <view class="upload-img">
+        <block wx:for="{{postimg}}" wx:key="index">
+            <view class="item">
+                <image src="{{item}}" mode="aspectFill"></image>
+                <text class="iconfont icon-close item-del" bindtap="del_pic_bind" id="{{index}}"></text>
+            </view>
+        </block>
+        <view class="item add" bindtap="chooseimg_bind"></view>
+    </view>
+    </form>
+</view>

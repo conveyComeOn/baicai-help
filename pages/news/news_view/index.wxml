@@ -1,0 +1,110 @@
+<block wx:if="{{glo_is_load}}">
+  <view class="glo_load_view">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text>
+    <text>正在努力加载</text>
+  </view>
+</block>
+<block wx:else>
+  <view class="view_con">
+    <view class="view_title gridXb">
+      <view class="view_title_box f18">{{news_data.title}}</view>
+      <view class="view_info f12 mt5">
+        <text class="iconfont icon-time"> {{news_data.addtime}}</text>
+        <text class="iconfont icon-link"> {{news_data.author}}</text>
+        <text class="iconfont icon-attention"> {{news_data.read_count}}</text>
+      </view>
+    </view>
+    <block wx:if="{{news_data.read_price > 0}}">
+      <block wx:if="{{userInfo.is_vip == 1}}">
+        <import src="../../../wxParse/wxParse.wxml" />
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
+      </block>
+      <block wx:elif="{{news_data.is_buy == 1}}">
+        <import src="../../../wxParse/wxParse.wxml" />
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
+      </block>
+      <block wx:else>
+        <view class="view_content">{{news_data.info}}</view>
+        <view class="view_payinfo">
+          <view class="view_payinfo_tips">本文需要付费才能阅读全部内容</view>
+          <button class="view_payinfo_btn" disabled="{{disabled}}" type="primary" bindtap="bind_pay"> 支付{{news_data.read_price}}元 </button>
+          <view class="view_payinfo_tips1">{{news_data.pay_num}}人支付</view>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <import src="../../../wxParse/wxParse.wxml" />
+      <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+    </block>
+  </view>
+  
+  <view class="view_message_con">
+    <view class="view_message_title fr f16" bindtap="write_message_bind"><text class="iconfont icon-write"></text> 留言</view>
+    <block wx:if="{{show_write_message}}">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="view_message_form floatBox">
+          <view class="view_message_box">
+            <view class="section view_form_textarea">
+              <textarea name="text_con" style="height:100px;" bindblur="bink_con_chang" placeholder="快来说两句吧..." />
+            </view>
+            <view class="view_message_btn">
+              <button formType="submit" loading="{{submitIsLoading}}" disabled="{{buttonIsDisabled}}">提交保存</button>
+            </view>
+          </view>
+          <view class="floatBox floatBoxBg" style="display:block;" bindtap="set_close"></view>
+        </view>
+      </form>
+    </block>
+    <view class="view_message_list">
+      <view class="liuyan_list pb15">
+        <view class="h3 gridXb f16 grey"><text class="iconfont icon-comment"></text> 查看精彩留言</view>
+        <ul>
+          <block wx:if="{{message_items}}">
+            <block wx:for="{{message_items}}">
+              <li class="flex gridXb">
+                <view class="img">
+                  <image class="list_img" src="{{item.app_user_headimg}}"></image>
+                </view>
+                <view class="right sub">
+                  <view class="clearfix">
+                    <view class="zang">
+                      <text class="iconfont icon-appreciate view_message_t_img" bindtap="commentGoodBind" id="{{item.id}}" data-ynum="{{item.good_count}}"></text>{{item.good_count}}</view>
+                    <text class="grey">{{item.app_user_name}}</text>
+                  </view>
+                  <view class="l_title">{{item.content}}</view>
+                  <view class="liuyun_wz">
+                    <view class="time linght">{{item.addtime}}</view>
+                  </view>
+                  <block wx:if="{{item.is_reply == 1}}">
+                    <view class="huifu_min">
+                      <view class="huifu_li gridXt">
+                        <view class="green">作者回复
+                          <view class="huifu_li_time linght">{{item.reply_time}}</view>
+                        </view>
+                        <view class="huifu_li_con">{{item.reply_content}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </li>
+            </block>
+          </block>
+          <block wx:else>
+            <view class="view_message_no">
+              <view>
+                <image class="view_message_no_img" src="../../../images/view_no_msg.png"></image>
+              </view>
+              <view>快来说点什么吧</view>
+            </view>
+          </block>
+        </ul>
+      </view>
+    </view>
+  </view>
+</block>
