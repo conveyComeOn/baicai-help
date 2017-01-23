@@ -17,7 +17,7 @@ App({
                  that.setLog(_DuoguanData.duoguan_user_token,u);
             })
          }else{
-            console.log(res.data);
+       
          }
        },
        complete: function() {

@@ -40,10 +40,10 @@ Page({
         })
     },
     choose_home:function(){
-        console.log("---");
+        
         var choose=1;
           wx.navigateTo({
-      url: `../../bbs/forum/forum?id=${choose}`
+      url: `../../bbs/find/forum?id=${choose}`
     })
 
     },
@@ -114,6 +114,7 @@ Page({
     initGetUserInfoData:function(data){
         var that = this
         if(data.code == 1){
+            console.log(data);
             that.setData({
                 userInfo:data.info,
                 glo_is_load:false

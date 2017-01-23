@@ -55,6 +55,7 @@ Page({
     },
     initPostInfoData:function(data){
       var that = this
+      console.log(data);
      
 
       if(data.info){
@@ -311,8 +312,10 @@ Page({
       
          var that=this;
          var datas=that.data.reply_items;
-         for(var i=0;i<datas.length;i++){
-               console.log(datas[i].isactive);
+         
+         if(datas){
+ for(var i=0;i<datas.length;i++){
+            //    console.log(datas[i].isactive);
 
                 if(datas[i].isactive){
                     var isShow='';
@@ -321,8 +324,10 @@ Page({
                 }
 
          }
+         }
+        
            that.setData({
-                 reply_item:datas
+                 reply_items:datas
              })
     },
     comment_reply_show_bind:function(e){

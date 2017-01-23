@@ -100,7 +100,7 @@ textarea.teStyle{ height: 100px; line-height: 20px;}
 .state{ font-size: 12px; height: 20px; line-height: 20px; font-style: normal;display: inline-block; color: #fff; padding: 0 4px; -webkit-border-radius: 3px;border-radius: 3px;}
 .marrow{ background: #e64340;}
 
-.post-btn{ background: #09bb07; color: #fff; width: 46px; height: 46px; border-radius: 50%; line-height: 46px; text-align: center; font-size: 24px; position: fixed; right: 16px; bottom: 16px; z-index: 99;}
+.post-btn{ background:brown; color: #fff; width: 46px; height: 46px; border-radius: 50%; line-height: 46px; text-align: center; font-size: 24px; position: fixed; right: 16px; bottom: 16px; z-index: 99;}
 
 /*评分*/
 .icon-favorfill{ color: #f60;}
@@ -128,17 +128,24 @@ textarea.teStyle{ height: 100px; line-height: 20px;}
 
 .glo_load_view{text-align: center;padding-top:50%;}
 /*暂无内容*/
-.no-content{ padding: 50px; color: rgba(0, 0, 0, 0.3);}
+.no-content{ padding: 96px; color: rgba(0, 0, 0, 0.3);}
 .no-content-icon{ font-size: 64px; line-height: 150%;}
 .no-content-font{ font-size: 20px;}
 .newtype{
-    color:brown;
+    
+    color: #09BB07;
     float: left;
     font-size: 16px;
+
+    
     
 }
 
-
+.empty{
+    height: 128px;
+    width: 128px;
+    
+}
 
 
 

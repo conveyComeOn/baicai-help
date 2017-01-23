@@ -17,7 +17,10 @@ Page({
       this_finish_page:0,
       glo_is_load:true,
       newtype:[],
-      yang:[]
+      yang:[],
+      my:0,
+      hehe:0
+
     },
   //事件处理函数
   forumPage: function() {
@@ -47,23 +50,52 @@ Page({
     })
     if(this_name == 'index'){
         that.setData({
-          this_weiba_id:0
+          this_weiba_id:0,
+        
         })
     }else if(this_name == 'gonggao'){
       var homeid=wx.getStorageSync('homeid');
+     
 if(homeid){
 that.setData({
-          this_weiba_id:homeid
+          this_weiba_id:homeid,
+           hehe:1
         })
 }else{
   that.setData({
-          this_weiba_id:10
+          this_weiba_id:10,
+          
         })
+        var id=1;
   wx.showModal({
                     title: '提示',
-                        content: '您尚未设置你的小区，请在个人中心-选择小区里面设置',
-                        showCancel:false
+                        content: '您尚未设置你的小区,现在要去设置我的小区吗',
+                        showCancel:true,
+                        success:function(res){
+                            if (res.confirm) {
+       wx.navigateTo({
+                            url: `../find/forum?id=${id}`,
+                            success: function(res){
+                              that.setData({
+        
+            hehe:1
+        })
+                            },
+                            fail: function() {
+                              // fail
+                            },
+                            complete: function() {
+                              // complete
+                            }
+                          })
+    }
+                        
+                        }
+                       
          })
+
+
+
 }
 
         
@@ -78,6 +110,7 @@ that.setData({
     _function.getBbsPostList(that.data.this_weiba_id,that.data.this_is_jinghua,that.data.this_page,that.data.pagesize,that.initBbsPostListData,this)
   },
   onLoad:function(options){
+    console.log(options);
   
       var that = this
       //请求帖子列表
@@ -92,17 +125,18 @@ that.setData({
       })
       _function.getBbsPostList(that.data.this_weiba_id,that.data.this_is_jinghua,that.data.this_page,that.data.pagesize,that.initBbsPostListData,that)
       //获取公告ID
-      _function.getBbsGonggaoId(that.initgetBbsGonggaoIdData,that)
-    },onShow:function(e){
-      
+   //   _function.getBbsGonggaoId(that.initgetBbsGonggaoIdData,that)
+    },onShow:function(){
+      var that=this;
+    
      
-      this.onPullDownRefresh();
-     
+ 
+       that.onPullDownRefresh();
     
     }
     ,onShareAppMessage: function () {   
-    var shareTitle="平台";
-    var shareDesc="小程序！";
+    var shareTitle="小白菜帮";
+    var shareDesc="立足于社区服务的小程序！";
     // if(_function.duoguanData.duoguan_share_info.weiba){
     //   shareTitle=_function.duoguanData.duoguan_share_info.weiba.share_title;
     //   shareDesc=_function.duoguanData.duoguan_share_info.weiba.share_desc;
@@ -120,7 +154,23 @@ that.setData({
       })
     },
     initBbsPostListData:function(data){
-      var that = this
+      var that = this;
+
+      var datalength=Object.keys(data);
+     
+      //    console.log(datalength);
+      if( data.info==null){
+         that.setData({
+        my:true
+        
+      })
+
+      }else{
+             that.setData({
+        my:false
+        
+      })
+      }
       that.setData({
           postlist:data.info,
           glo_is_load:false
@@ -175,8 +225,58 @@ that.setData({
       })
     },
     //下拉刷新
-    onPullDownRefresh:function(){
+    onPullDownRefresh:function(e){
       var that = this
+//       console.log(e);
+//       if(that.data.this_nav_name=='gonggao'){
+// var homeid=wx.getStorageSync('homeid');
+
+ 
+//     console.log(homeid,that.data.this_weiba_id)
+// if(homeid!=that.data.this_weiba_id){
+// that.setData({
+//           this_weiba_id:homeid,
+        
+//         })
+// }else{
+//   that.setData({
+//           this_weiba_id:0
+//         })
+    
+// }
+//       }
+
+
+//  console.log(that.data.this_nav_name,that.data.hehe);
+ if(that.data.this_nav_name=='gonggao'&&homeid!=that.data.this_weiba_id){
+         
+
+ var homeid=wx.getStorageSync('homeid');
+ 
+    // console.log(homeid,that.data.this_weiba_id)
+
+that.setData({
+          this_weiba_id:homeid,
+          hehe:1
+        
+        })
+}else{
+  that.setData({
+          this_weiba_id:0,
+          hehe:0
+        })
+    
+
+
+    
+      }
+
+
+
+
+
+
+      
       that.setData({
         this_page:1
       })
@@ -216,6 +316,32 @@ that.setData({
               postlist:that.data.postlist.concat(data.info),
               this_page:that.data.this_page + 1
             })
+
+
+
+
+
+     
+      var typearray=[];
+      var yang=[];
+      if(data.info){
+        var all=_function.getname(that.data.postlist);
+        
+        typearray=all[0];
+        yang=all[1];
+      that.setData({
+         newtype:typearray,
+         yang:yang
+       })
+
+      }
+
+
+
+
+
+
+
         }
         that.setData({
           this_finish_page:that.this_finish_page + 1

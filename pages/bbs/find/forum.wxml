@@ -1,10 +1,10 @@
 <!--forum.wxml-->
 <view class="forum">
-<block wx:for="{{cateList}}" wx:key="index">
-    <view class="forum-item">        
-        <view class="forum-tit f18 green"  catchtap="isShow_bind" id="{{item.id}}">
+<block wx:for="{{cateList}}" wx:key="index" >
+    <view class="forum-item" bindtap="itemclick" id="{{item.id}}">        
+        <view class="forum-tit f18 green">
             <block wx:if="{{item.isshow}}">
-                <view class="set fr"  ></view>
+                <view class="set fr"  id="{{item.id}}"></view>
             </block>
             <block wx:else>
                 <view class="set fr active"  id="{{item.id}}"></view>

@@ -13,7 +13,7 @@ module.exports = {
                 if (res.statusCode == 200 && res.data.code > 0) {
 
 
-              console.log(res);
+            //  console.log(res);
                     callback.apply(pageobj,[res.data])
                 } else {
                     var error_msg = 'error:接口请求错误';

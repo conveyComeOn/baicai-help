@@ -64,17 +64,17 @@
              <text class="grey">请选择类型：</text>{{array[first_index]}}
             </view>
         </picker>
-        <picker bindchange="bindPickerChange" value="{{cate_index}}" range="{{cateList}}" style="padding:0;" wx:if="{{first_index==0?false:true}}">
+        <picker bindchange="bindPickerChange" value="{{cate_index}}" range="{{cateList}}" style="padding:0;" >
             <view class="picker new-post-cap arrowR">
-             <text class="grey">请选择小区：</text>{{cateList[cate_index]}}
+             <text class="grey">请选择小区：</text>{{myhome?myhome:cateList[cate_index]}}
             </view>
         </picker>
         <view class="gridXt" style="padding-top:15px;">
-            <textarea class="textarea" name="post_content" placeholder="写点什么吧..." maxlength="-1" />
+            <textarea class="textarea" name="post_content" placeholder="写点什么吧..." maxlength="-1" bindfocus='getfocus'/>
             
          <!--<input type="text" name="pid" value="{{forum_thisid}}" style="display:none;" />-->
           
-           <input name="pid"  hidden value='{{this_index==0?typeArray[this_nav_name]:typearr[this_nav_name]}}'/>
+           <input name="pid"  hidden value='{{first_index==0?typeArray[this_nav_name]:typearr[this_nav_name]}}'/>
 
         </view>
     </view>

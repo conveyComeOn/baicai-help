@@ -52,7 +52,7 @@
 
         </view>
 </view>
-
+<!--
 <view class="my-menu mt10"> 
         <view class="my-menu-box">
             <view class="my-menu-item center" bindtap="isShow_bind" id="{{item.name}}">
@@ -60,7 +60,7 @@
             </view>
 
         </view>
-</view>
+</view>-->
 
 
 

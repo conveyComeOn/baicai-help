@@ -1,4 +1,4 @@
-.Member_head{background: #09bb07;position: relative;padding:30px;}
+.Member_head{background: brown;position: relative;padding:30px;}
 .Member_img{text-align: center;color:#fff;}
 .Member_head .bianji{position: absolute;top:15px;right: 15px;color:#fff;}
 .bianji_ico{float: left;}

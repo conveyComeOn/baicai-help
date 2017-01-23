@@ -16,11 +16,12 @@ Page({
         forumlist_isshow:false,
         forum_thisname:'版 块',
         forum_thisid:0,
-        array:["商品信息","灌水杂谈"],
-       typeArray:["二手","求购","出租","转让","赠送","租房","交换"],
-       typearr:["灌水","提个醒","问个事","社区快讯","搭把手","寻失物","找宠物"],
+        array:["灌水杂谈","二手闲置"],
+       typearr:["二手","求购","出租","转让","赠送","租房","交换"],
+       typeArray:["灌水","提个醒","问个事","社区快讯","搭把手","寻失物","找宠物"],
         first_index:0,
-        this_nav_name:0
+        this_nav_name:0,
+        myhome:0
     },
     //取消操作
     post_cancel_bind:function(){
@@ -28,17 +29,35 @@ Page({
     },
     initBbsCateData:function(data){
       var that = this;
+    //   console.log(data);
 
+var homeid=wx.getStorageSync('homeid');
+
+var home=homeid-173;
+
+if(homeid){
+    that.setData({
+       cate_index:home,
+      
+    })
+}
+
+
+var catearray=[];
+for(var i=0;i<data.info.length-1;i++){
+    catearray.push(data.info[i]);
+}
       that.setData({
-          cateList:data.info
+          cateList:catearray
       })
     },firstpickchange:function(e){
-        console.log(e.detail.value)
+    
         this.setData({
             first_index:e.detail.value
         })
     },
     bindPickerChange:function(e){
+        // console.log(e);
         this.setData({
             cate_index:e.detail.value
         })
@@ -80,17 +99,31 @@ Page({
     },
     //发表帖子
     formSubmit:function(e){
-       console.log(e.detail.value);
+       
         var that = this
         var t_data = e.detail.value
+    
         var content="#"+t_data.pid+"#"+t_data.post_title;
+
+      if(!t_data.post_title){
+ wx.showModal({
+                title: '提示',
+                content: '请输入标题',
+                showCancel:false
+            })
+            return
+      }
+   
+     
         t_data.post_title=content;
 
-   if(that.data.first_index==0){
- var t_wb_name = that.data.cateList[that.data.cateList.length-1]
-   }else{
- var t_wb_name = that.data.cateList[that.data.cate_index]
-   }
+//    if(that.data.first_index==0){
+//  var t_wb_name = that.data.cateList[that.data.cateList.length-1]
+//    }else{
+//  var t_wb_name = that.data.cateList[that.data.cate_index]
+//    }
+
+ var t_wb_name=that.data.cateList[that.data.cate_index];
 
         that.setData({
             buttonIsDisabled:true,
@@ -104,6 +137,7 @@ Page({
             buttonIsDisabled:false,
             submitIsLoading:false
         })
+        
         if(data.code == 1){
             var post_id = data.info
             //如果发表成功，则进行上传图片接口
@@ -121,8 +155,15 @@ Page({
                 })
                 that.imgUploadTime()
             }
+             wx.showToast({
+                    title: '发表成功',
+                    icon: 'success',
+                    duration: 1000
+                })
            
-           wx.navigateBack({
+
+           setTimeout(function(){
+            wx.navigateBack({
              delta: 1, // 回退前 delta(默认为1) 页面
              success: function(res){
                // success
@@ -134,6 +175,8 @@ Page({
                // complete
              }
            })
+           },800);
+         
 
 
 
@@ -182,6 +225,10 @@ Page({
         var that = this
         //请求板块列表
        _function.getBbsTwoCategory(that.initBbsCateData,this)
+
+
+
+
         //获取用户信息
         _function.getUserInfo(wx.getStorageSync("utoken"),that.initGetUserInfoData,this)
     },
@@ -241,5 +288,7 @@ Page({
             })
           }
        }
+    },getfocus:function(e){
+// console.log(e);
     }
 })

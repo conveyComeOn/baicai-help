@@ -40,8 +40,8 @@ Page({
       _function.getCmsList(0,0,that.data.this_page,that.data.pagesize,that.initCmsData,this);
     },
     onShareAppMessage: function () {   
-    var shareTitle="夺冠魔方小程序生成平台";
-    var shareDesc="欢迎使用夺冠魔方，在这里在可以快速生成您的小程序！";
+    var shareTitle="小白菜帮";
+    var shareDesc="大家自己的社区";
     if(_function.duoguanData.duoguan_share_info.duoguancms){
       shareTitle=_function.duoguanData.duoguan_share_info.duoguancms.share_title;
       shareDesc=_function.duoguanData.duoguan_share_info.duoguancms.share_desc;

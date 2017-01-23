@@ -1,4 +1,6 @@
 <!--index.wxml-->
+
+
 <block wx:if="{{glo_is_load}}">
     <view class="glo_load_view">
         <text class="iconfont icon-loading animated infinite rotate mr5"></text><text>正在努力加载</text>
@@ -7,10 +9,10 @@
 <block wx:else>
 <view class="flex tc gridXb f18 header">
     <block wx:if="{{this_nav_name == 'index'}}">
-        <view class="sub active">首页</view>
+        <view class="sub active">全部帖子</view>
     </block>
     <block wx:else>
-        <view class="sub" bindtap="index_nav_bind" id="index">首页</view>
+        <view class="sub" bindtap="index_nav_bind" id="index">全部帖子</view>
     </block>
     <block wx:if="{{this_nav_name == 'gonggao'}}">
         <view class="sub active">我的小区</view>
@@ -19,13 +21,31 @@
         <view class="sub" bindtap="index_nav_bind" id="gonggao">我的小区</view>
     </block>
     <block wx:if="{{this_nav_name == 'jinghua'}}">
-        <view class="sub active">商品信息</view>
+        <view class="sub active">二手闲置</view>
     </block>
     <block wx:else>
-        <view class="sub" bindtap="index_nav_bind" id="jinghua">商品信息</view>
+        <view class="sub" bindtap="index_nav_bind" id="jinghua">二手闲置</view>
     </block>
    
 </view>
+
+
+
+<!--暂无内容提示 start-->
+<block wx:if="{{my}}">
+<view class="no-content tc" >
+    <!--<text class="no-content-icon iconfont icon-yemianwuneirong"></text>-->
+    <image src="../../../images/hate.png" class="empty"></image>
+    <view class="no-content-font">暂无帖子信息</view>
+</view>
+</block>
+<!--暂无内容提示 end-->
+
+
+
+
+
+<block wx:else>
 
 <!--content-->
 
@@ -48,6 +68,7 @@
             <view class="user-info">
                 <view class="fl avatar"><image src="{{item.user_headimgurl}}"></image></view>
                 <view class="fl grey">{{item.user_nickname}}</view>
+                <!--<view class="forum-name">{{item.weiba_name}}</view>-->
             </view>
         </view>
         <view bindtap="detail" id="{{item.id}}" class="desc">
@@ -73,6 +94,9 @@
     </view>
     </block> 
 </view>
+</block>
+
+
 <!--帖子列表 end-->
 <!--loading start-->
 <view class="m20 tc grey loading" wx:if="{{showLoading}}">

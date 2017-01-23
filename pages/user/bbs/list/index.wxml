@@ -2,7 +2,8 @@
 <block wx:if="{{postlist == null}}">
 <!--暂无内容提示 start-->
 <view class="no-content tc">
-    <text class="no-content-icon iconfont icon-yemianwuneirong"></text>
+    <!--<text class="no-content-icon iconfont icon-yemianwuneirong"></text>-->
+    <image src="../../../../images/hate.png" class="empty"></image>
     <view class="no-content-font">暂无帖子信息</view>
 </view>
 <!--暂无内容提示 end-->
