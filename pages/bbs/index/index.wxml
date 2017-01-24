@@ -7,6 +7,21 @@
     </view>
 </block>
 <block wx:else>
+<view class="top"></view>
+
+
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="block">
+  <block wx:for="{{images}}" wx:key="unique">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"  />
+    </swiper-item>
+  </block>
+</swiper>
+
+
+
+
 <view class="flex tc gridXb f18 header">
     <block wx:if="{{this_nav_name == 'index'}}">
         <view class="sub active">全部帖子</view>
